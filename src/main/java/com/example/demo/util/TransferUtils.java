@@ -1,7 +1,7 @@
 package com.example.demo.util;
 
 public class TransferUtils {
-    public static final String location="C:\\Users\\1\\Desktop\\demo\\code";
+    public static final String location=".\\code";
     //获取访问属性
     public static String getVisitType(String visit){
         if(visit.equals("-")) return "private";
