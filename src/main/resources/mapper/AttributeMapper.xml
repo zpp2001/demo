@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AttributeMapper">
+    <resultMap id="FieldsBaseType" type="com.example.demo.entity.ClassAttribute">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="access" property="access"/>
+        <result column="class_id" property="class_id"/>
+    </resultMap>
+    <insert id="insertAttributes" >
+        insert into classattribute (id,name,type,access,class_id) values
+        <foreach collection="list" item="attribute" index="index"  separator=",">(#{attribute.id},#{attribute.name},#{attribute.type},#{attribute.access},#{attribute.class_id})
+        </foreach>
+    </insert>
+    <insert id="updateAttributes" parameterType="com.example.demo.entity.ClassAttribute">
+        insert into classattribute values (#{id},#{name},#{type},#{access},#{class_id});
+    </insert>
+
+    <select id="getAttributes" resultMap="FieldsBaseType">
+        select * from classattribute where class_id=#{class_id};
+    </select>
+</mapper>

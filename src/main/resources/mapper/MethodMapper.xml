@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MethodMapper">
+    <resultMap id="MethodBaseType" type="com.example.demo.entity.ClassMethod">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="return_type" property="return_type"/>
+        <result column="access" property="access"/>
+        <result column="class_id" property="class_id"/>
+        <result column="param" property="param"/>
+    </resultMap>
+<!--    <insert id="updateMethods" >-->
+<!--        insert into classmethod (id,name,type,access,class_id) values-->
+<!--        <foreach collection="list" item="attribute" index="index"  separator=",">(#{attribute.id},#{attribute.name},#{attribute.type},#{attribute.access},#{attribute.class_id})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+    <insert id="updateMethods" parameterType="com.example.demo.entity.ClassMethod">
+        insert into classmethod values (#{id},#{name},#{return_type},#{access},#{class_id},#{param});
+    </insert>
+
+    <select id="getMethods" resultMap="MethodBaseType">
+        select * from classmethod where class_id=#{class_id};
+    </select>
+</mapper>
